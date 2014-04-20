@@ -1,0 +1,40 @@
+Change Log: v1.0.1
+
++Added 5 more levels to the second theme
++Improved the clarity for the hitbox
++Improved the hitbox
++Fixed rare issue where horizontal spikes would not kill you
++Fixed hint box not disappearing
+
+Change Log: v1.0.2
+
++Player now stops completely at the finish line
++Added 5 new levels (20 total now)
++Added an introduction tag for Doppler Indie Games
++Added new sound effects
++Added a 'next' button
++Added more particles when killed
++Added an info message for new downloaders
++Greatly improved loading time
++Improved Theme 2's overall appearance
++Fixed a word wrap bug for shorter sentences
++Fixed a timer bug when paused
++Fixed a bug caused by the lock button
+
+Change Log: v1.0.3
+
++Added visibility for new high scores
++Added 10 new levels (30/30)
++Relocated the high score
++Relocated the 'play' button to support unique screen resolutions
++Fixed the audio so that it properly works according to your media volume
++Fixed a rare freezing bug caused by finishing a level
++Optimized the overall level performance to reduce minor lag spikes
++Improved the 'pause' buttons functionality
++Improved the 'next' buttons functionality
++Tweaked a few levels
++Removed the 'exit' button
+
+Change Log: v1.0.3.1 (Hotfix)
+
++Fixed new high scores not showing up appropriately
