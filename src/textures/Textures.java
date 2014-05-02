@@ -8,13 +8,15 @@ import android.view.View;
 
 public class Textures extends View {
 	public Bitmap bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9; //backgrounds
-	public Bitmap player, tiles, star, cloud, smoke; //effects
+	public Bitmap player, playerwhite, tiles, star, cloud, smoke; //effects
 	public Bitmap text1, text2; //text
 	public Bitmap levelSelect, play, exit, next, back, icon, logo; //menu
 	public Textures(Context context){
 		super(context);
 		//player
 		player = BitmapFactory.decodeResource(getResources(),  R.drawable.player);
+        playerwhite = BitmapFactory.decodeResource(getResources(),  R.drawable.playerwhite);
+
 		//terrain
 		bg1 = BitmapFactory.decodeResource(getResources(),  R.drawable.bg1);
 		bg2 = BitmapFactory.decodeResource(getResources(),  R.drawable.bg2);

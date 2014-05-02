@@ -18,7 +18,7 @@ public class Player {
 	public Player(){
 		x=62;
 		y=0;
-		sprite = new SpriteHandler(MainGamePanel.texture.player.getWidth(), 
+		sprite = new SpriteHandler(MainGamePanel.texture.player.getWidth(),
 				MainGamePanel.texture.player.getHeight(), 4, 1, 0.5);
 		alive = true;
 		jump = new JumpAccelerator(-16,0.5);
@@ -29,7 +29,10 @@ public class Player {
 		Paint paint = new Paint();
 		paint.setARGB(255, 255, 255, 255);
 		if (particles.isEmpty() || MainGamePanel.gui.hint.isOpen() || particles.getType()==1){
+            //toggle player color according to map type
+            if (BoxelActivity.game.level.getCurrentLevel() < 20)
 			canvas.drawBitmap(MainGamePanel.texture.player, sprite.getSprite(), sprite.getDestination(), null);
+            else canvas.drawBitmap(MainGamePanel.texture.playerwhite, sprite.getSprite(), sprite.getDestination(), null);
 		}
 		particles.draw(canvas);
 		if (!MainGamePanel.isPaused()) particles.update();
