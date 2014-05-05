@@ -2,7 +2,7 @@ package pack.boxel.main;
 import particle.ParticleHandler;
 import physics.JumpAccelerator;
 import physics.SprintAccelerator;
-import textures.SpriteHandler;
+import textures.SpriteSheet;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -13,13 +13,12 @@ public class Player {
 	JumpAccelerator jump;
 	SprintAccelerator sprint;
 	ParticleHandler particles;
-	SpriteHandler sprite;
+	SpriteSheet sprite;
 	
 	public Player(){
 		x=62;
 		y=0;
-		sprite = new SpriteHandler(MainGamePanel.texture.player.getWidth(),
-				MainGamePanel.texture.player.getHeight(), 4, 1, 0.5);
+        sprite = new SpriteSheet(MainGamePanel.texture.player,4,1,0.5);
 		alive = true;
 		jump = new JumpAccelerator(-16,0.5);
 		sprint = new SprintAccelerator(6.0, 0.1, 4.5);
@@ -29,15 +28,14 @@ public class Player {
 		Paint paint = new Paint();
 		paint.setARGB(255, 255, 255, 255);
 		if (particles.isEmpty() || MainGamePanel.gui.hint.isOpen() || particles.getType()==1){
-            //toggle player color according to map type
-            if (BoxelActivity.game.level.getCurrentLevel() < 20)
-			canvas.drawBitmap(MainGamePanel.texture.player, sprite.getSprite(), sprite.getDestination(), null);
-            else canvas.drawBitmap(MainGamePanel.texture.playerwhite, sprite.getSprite(), sprite.getDestination(), null);
+            sprite.draw(canvas);
 		}
 		particles.draw(canvas);
 		if (!MainGamePanel.isPaused()) particles.update();
 	}
 	public void check(){
+        //update sprite texture
+
 		if (alive){
 			//move right
 			if (sprinting && particles.isEmpty() || particles.getType()==1){
@@ -77,12 +75,16 @@ public class Player {
 	}
 	public void animate(){
 		//animate according to the screen
-		if (jumping) sprite.update(62+(int)deathWall, (int)(y-32), 32, 32);
+		if (jumping){
+            sprite.animate();
+            sprite.update(62 + (int) deathWall, (int) (y - 32), 32, 32);
+        }
 		else resetAnimation();
 	}
 	public void resetAnimation(){
+        sprite.animate(0);
 		sprite.reset();
-		sprite.update(62+(int)deathWall, (int)(y-32), 32, 32);
+		sprite.update(62 + (int) deathWall, (int) (y - 32), 32, 32);
 	}
 	public void checkGravity(){
 		//check distance between player and platform
@@ -232,6 +234,9 @@ public class Player {
 		finished = false;
 		MainGamePanel.gui.fade = 0;
 		//MainGamePanel.bg.stars.reset();
+        //change sprite texture
+        if (BoxelActivity.game.level.getCurrentLevel() < 20) sprite.setBitmap(MainGamePanel.texture.player);
+        else sprite.setBitmap(MainGamePanel.texture.playerwhite);
 	}
 	public int getType(double x1, double y1){
 		if (y1 >= 0 && y1 <= (MainGamePanel.level.getRows())*32)
